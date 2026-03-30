@@ -1,4 +1,5 @@
-using Backend.Modelos;
+using Backend.Modelos.Entidades;
+
 
 namespace Backend.Repositorio.Usuario;
 
@@ -18,7 +19,7 @@ public class UsuarioRepositorio : IUsuarioRepositorio
         return _contexto.Usuarios.Any(u => u.DocumentoIdentidad == documentoIdentidad);
     }
 
-    public void Agregar(Modelos.Usuario usuario)
+    public void Agregar(Modelos.Entidades.Usuario usuario)
     {
         _contexto.Usuarios.Add(usuario);
         _contexto.SaveChanges(); 

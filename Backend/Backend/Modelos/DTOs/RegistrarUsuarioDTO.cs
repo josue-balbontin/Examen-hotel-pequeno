@@ -1,5 +1,5 @@
 namespace Backend.Modelos.DTOs;
-
+using Backend.Modelos.Entidades;
 public class RegistrarUsuarioDTO
 {
     public string Nombres { get; set; } = null!;

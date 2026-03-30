@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Backend.Modelos;
+using Backend.Modelos.Entidades;
 using Backend.Repositorio.Usuario;
+using Backend.Repositorio.Reserva;
 using Backend.Servicios;
 
 
@@ -26,6 +27,8 @@ builder.Services.AddDbContext<HotelDbContext>(options =>
 
 builder.Services.AddScoped<IUsuarioRepositorio , UsuarioRepositorio>();
 builder.Services.AddScoped<IUsuarioServicio , UsuarioServicio>();
+builder.Services.AddScoped<IReservaRepositorio , ReservaRepositorio>();
+builder.Services.AddScoped<IReservaServicio , ReservaServicio>();
 
 
 

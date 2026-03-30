@@ -1,4 +1,4 @@
-using Backend.Modelos;
+using Backend.Modelos.Entidades;
 using Backend.Repositorio.Usuario;
 
 namespace Backend.Servicios;
@@ -22,7 +22,7 @@ public class UsuarioServicio : IUsuarioServicio
         
         if (_repositorio.ExisteDocumento(usuario.DocumentoIdentidad))
         {
-            throw new InvalidOperationException("Ya existe un huésped registrado con este documento de identidad.");
+            throw new InvalidOperationException("Ya existe un Usuario registrado con este documento de identidad.");
         }
 
         _repositorio.Agregar(usuario);

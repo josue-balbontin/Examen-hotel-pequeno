@@ -1,4 +1,4 @@
-using Backend.Modelos;
+using Backend.Modelos.Entidades;
 
 namespace Backend.Servicios;
 

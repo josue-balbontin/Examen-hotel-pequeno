@@ -1,4 +1,4 @@
-using Backend.Modelos;
+using Backend.Modelos.Entidades;
 using Backend.Modelos.DTOs;
 using Backend.Servicios;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +25,7 @@ public class UsuarioControlador : ControllerBase
     }
     
     
-    [HttpPost]
+    [HttpPost("RegistrarUsuario")]
     public IActionResult Registrar(RegistrarUsuarioDTO usuariojson)
     {
         try

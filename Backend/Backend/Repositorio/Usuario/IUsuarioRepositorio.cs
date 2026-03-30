@@ -1,6 +1,6 @@
 namespace Backend.Repositorio.Usuario;
 
-using Backend.Modelos;
+using Backend.Modelos.Entidades;
 
 public interface IUsuarioRepositorio
 {
