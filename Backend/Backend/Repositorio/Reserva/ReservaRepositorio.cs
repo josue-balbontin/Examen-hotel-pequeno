@@ -50,4 +50,9 @@ public class ReservaRepositorio : IReservaRepositorio
 
         _contexto.SaveChanges();
     }
+    
+    public List<Modelos.Entidades.Reserva> ObtenerTodas()
+    {
+        return _contexto.Reservas.AsNoTracking().ToList();
+    }
 }

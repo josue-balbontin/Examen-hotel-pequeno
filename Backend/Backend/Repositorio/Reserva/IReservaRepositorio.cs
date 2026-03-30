@@ -9,4 +9,6 @@ public interface IReservaRepositorio
     bool ExisteSolapamiento(int idHabitacion, DateOnly ingreso, DateOnly salida);
 
     void Crear(Modelos.Entidades.Reserva reserva, List<int> idsUsuarios);
+
+    List<Modelos.Entidades.Reserva> ObtenerTodas();
 }

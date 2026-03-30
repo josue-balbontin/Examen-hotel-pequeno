@@ -1,4 +1,5 @@
 using Backend.Modelos.DTOs;
+using Backend.Modelos.Entidades;
 using Backend.Repositorio.Reserva;
 
 namespace Backend.Servicios;
@@ -36,5 +37,9 @@ public class ReservaServicio : IReservaServicio
 
         _repositorio.Crear(reserva, dto.IdsUsuarios);
     }
-}
 
+    public IEnumerable<Reserva> ObtenerReservas()
+    {
+        return _repositorio.ObtenerTodas();
+    }
+}

@@ -32,4 +32,21 @@ public class ReservaControlador : ControllerBase
             return Conflict(new { error = ex.Message });
         }
     }
+
+    [HttpGet("ObtenerReservas")]
+    public IActionResult ObtenerReservas()
+    {
+        try
+        {
+            var reservas = _servicio.ObtenerReservas();
+            return Ok(reservas);
+        }
+        catch (Exception ex)
+        {
+            
+            return StatusCode(500, new { error = "Ocurrió un error interno en el servidor: " + ex.Message });
+        }
+        
+
+    }
 }
