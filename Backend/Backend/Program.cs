@@ -1,8 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using Backend.Modelos;
+using Backend.Repositorio.Usuario;
+using Backend.Servicios;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PoliticaCors", app =>
+    {
+        app.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 
 
 builder.Services.AddControllers();
@@ -11,9 +24,10 @@ builder.Services.AddDbContext<HotelDbContext>(options =>
     options.UseNpgsql("Host=localhost;Database=hotel_pequeno;Username=postgres;Password=273153"));
 
 
-// 2. INYECCIÓN DE DEPENDENCIAS (Aquí registraremos tus Servicios y Repositorios más adelante)
-// Ejemplo: builder.Services.AddScoped<HabitacionService>();
-// Ejemplo: builder.Services.AddScoped<HabitacionRepository>();
+builder.Services.AddScoped<IUsuarioRepositorio , UsuarioRepositorio>();
+builder.Services.AddScoped<IUsuarioServicio , UsuarioServicio>();
+
+
 
 
 builder.Services.AddEndpointsApiExplorer(); 
@@ -28,6 +42,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("PoliticaCors");
 
 
 app.MapControllers();
