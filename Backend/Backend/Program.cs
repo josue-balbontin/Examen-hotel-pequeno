@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Backend.Modelos;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<HotelDbContext>(options =>
+    options.UseNpgsql("Host=localhost;Database=hotel_pequeno;Username=postgres;Password=273153"));
+
 
 // 2. INYECCIÓN DE DEPENDENCIAS (Aquí registraremos tus Servicios y Repositorios más adelante)
 // Ejemplo: builder.Services.AddScoped<HabitacionService>();

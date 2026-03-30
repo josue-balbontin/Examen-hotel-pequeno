@@ -7,5 +7,11 @@ namespace Backend.Controladores;
 [Route("[controller]")]
 public class Usuarios : ControllerBase
 {
+    [HttpGet]
+    public IEnumerable<string> Get()
+    {
+        return new string[] { "Usuario1", "Usuario2" };
+    }
+    
     
 }
