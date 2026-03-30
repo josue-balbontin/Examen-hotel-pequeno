@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controladores\" />
       <Folder Include="Modelos\" />
       <Folder Include="Repositorio\" />
       <Folder Include="Servicios\" />
