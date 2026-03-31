@@ -1,0 +1,167 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-content.crear-modal {
+  background: #fff;
+  padding: 32px;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+  max-height: 90vh;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+}
+
+.modal-header h2 {
+  margin: 0 0 24px 0;
+  font-size: 1.25rem;
+  color: #111;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
+}
+
+.seccion {
+  background: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.fechas-fila {
+  display: flex;
+  gap: 12px;
+}
+
+.fechas-fila .field {
+  flex: 1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.field input, .field select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.field select[multiple] {
+  padding: 0;
+}
+.field select[multiple] option {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.field input:focus, .field select:focus {
+  outline: none;
+  border-color: #666;
+}
+
+.field input.invalid, .field select.invalid {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.info-dim {
+  font-size: 0.75rem;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.btn-buscar {
+  width: 100%;
+  padding: 10px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity 0.2s;
+}
+.btn-buscar:hover { opacity: 0.9; }
+
+.tarjeta-resumen {
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 16px;
+  color: #0369a1;
+  font-size: 0.85rem;
+}
+
+.tarjeta-resumen p {
+  margin: 4px 0 0 0;
+}
+
+.alerta-error {
+  background: #fef2f2;
+  border: 1px solid #ef4444;
+  color: #b91c1c;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-cancel, .btn-save {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+}
+.btn-cancel:hover { background: #f5f5f5; }
+
+.btn-save {
+  background: #111;
+  color: #fff;
+}
+.btn-save:hover { background: #333; }

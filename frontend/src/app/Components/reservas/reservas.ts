@@ -6,11 +6,12 @@ import { Reserva } from '../../Models/reserva.model';
 import { EstadoReserva } from '../../Models/estado-reserva.enum';
 import { PantallaCargaComponent } from '../pantallas_avisos/pantalla-carga/pantalla-carga.component';
 import { MostrarerrorComponent } from '../pantallas_avisos/mostrarerror/mostrarerror.component';
+import { CrearReserva } from './crear-reserva/crear-reserva';
 
 @Component({
   selector: 'app-reservas',
   standalone: true,
-  imports: [TablaGenerica, PantallaCargaComponent, MostrarerrorComponent],
+  imports: [TablaGenerica, PantallaCargaComponent, MostrarerrorComponent, CrearReserva],
   templateUrl: './reservas.html',
   styleUrl: './reservas.css',
 })
@@ -19,6 +20,7 @@ export class Reservas implements OnInit {
   reservas: any[] = [];
   cargando: WritableSignal<boolean> = signal<boolean>(false);
   error: WritableSignal<boolean> = signal<boolean>(false);
+  mostrarModalCrear: WritableSignal<boolean> = signal<boolean>(false);
   mensajeError: string = '';
 
   columnas: ColumnaTabla[] = [
@@ -123,4 +125,16 @@ export class Reservas implements OnInit {
     }
   }
 
-}
+  abrirModalCrear(): void {
+    this.mostrarModalCrear.set(true);
+  }
+
+  cerrarModalCrear(): void {
+    this.mostrarModalCrear.set(false);
+  }
+
+  onReservaCreada(): void {
+    this.cerrarModalCrear();
+    this.cargarReservas();
+  }
+} 

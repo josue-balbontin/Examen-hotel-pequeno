@@ -1,1 +1,91 @@
-<p>crear-reserva works!</p>
+<div class="modal-overlay">
+  <div class="modal-content crear-modal">
+    <div class="modal-header">
+      <h2>Crear Reserva</h2>
+    </div>
+
+    @if (hayErrorFront) {
+    <div class="alerta-error">
+      {{mensajeErrorFront}}
+    </div>
+    }
+
+    <form [formGroup]="reservaForm" (ngSubmit)="guardar()">
+
+
+      <div class="seccion">
+        <div class="fechas-fila">
+          <div class="field">
+            <label>Fecha de Ingreso *</label>
+            <input type="date" formControlName="fechaIngreso"
+              [class.invalid]="reservaForm.get('fechaIngreso')?.invalid && reservaForm.get('fechaIngreso')?.touched">
+          </div>
+          <div class="field">
+            <label>Fecha de Salida *</label>
+            <input type="date" formControlName="fechaSalida"
+              [class.invalid]="reservaForm.get('fechaSalida')?.invalid && reservaForm.get('fechaSalida')?.touched">
+          </div>
+        </div>
+        <button type="button" class="btn-buscar" (click)="buscarDisponibilidad()">Consultar Disponibilidad</button>
+      </div>
+
+
+      <div class="seccion">
+        <div class="field">
+          <label>1. Variación de Habitación *</label>
+          <select formControlName="idTipoHabitacion"
+            [class.invalid]="reservaForm.get('idTipoHabitacion')?.invalid && reservaForm.get('idTipoHabitacion')?.touched">
+            <option value="" disabled selected>Seleccione un tipo...</option>
+            @for (tipo of tiposDisponibles; track tipo.idTipoHabitaciones) {
+            <option [value]="tipo.idTipoHabitaciones">{{ tipo.nombre }}</option>
+            }
+          </select>
+        </div>
+
+        @if (tipoSeleccionadoInfo) {
+        <div class="tarjeta-resumen">
+          <strong>Detalles del Tipo: {{tipoSeleccionadoInfo.nombre}}</strong>
+          <p><strong>Capacidad Máxima:</strong> {{tipoSeleccionadoInfo.capacidad}} persona(s)</p>
+          <p><strong>Precio Base:</strong> ${{tipoSeleccionadoInfo.precioReferencia}}</p>
+          <p><strong>Descripción:</strong> {{tipoSeleccionadoInfo.descripcion}}</p>
+        </div>
+        }
+
+        <div class="field">
+          <label>2. Especializar Habitación Asignada *</label>
+          <select formControlName="idHabitacion"
+            [class.invalid]="reservaForm.get('idHabitacion')?.invalid && reservaForm.get('idHabitacion')?.touched">
+            <option value="" disabled selected>Elija número de Cuarto...</option>
+            @for (hab of habitacionesFiltradas; track hab.idHabitaciones) {
+            <option [value]="hab.idHabitaciones">Num: {{ hab.numeroHabitacion }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+
+      <div class="seccion">
+        <div class="field field-multiple">
+          <label>3. Adicionar Huésped(es) (Múltiple) *</label>
+          <span class="info-dim">Ctrl + click para seleccionar varios. Mínimo 1.</span>
+          <select multiple formControlName="idsUsuarios" size="4"
+            [class.invalid]="reservaForm.get('idsUsuarios')?.invalid && reservaForm.get('idsUsuarios')?.touched">
+            @for (usuario of usuariosDisponibles; track usuario.idUsuarios) {
+            <option [value]="usuario.idUsuarios">{{ usuario.nombres }} {{ usuario.apellidos }} ({{
+              usuario.documentoIdentidad }})</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn-cancel" (click)="cancelar()">Cancelar</button>
+        <button type="submit" class="btn-save">Reservar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+@if (cargando()) {
+<app-pantalla-carga></app-pantalla-carga>
+}

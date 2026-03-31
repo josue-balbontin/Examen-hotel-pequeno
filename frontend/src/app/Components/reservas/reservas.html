@@ -1,6 +1,7 @@
 <div class="page-container">
   <div class="page-header">
     <h2>Registro de Reservas</h2>
+    <button class="boton-add" (click)="abrirModalCrear()">Crear Reserva</button>
   </div>
 
   <app-tabla-generica 
@@ -17,4 +18,11 @@
 
 @if (error()) {
   <app-mostrarerror [error]="error" [mensaje]="mensajeError"></app-mostrarerror>
+}
+
+@if (mostrarModalCrear()) {
+  <app-crear-reserva 
+    (cerrar)="cerrarModalCrear()" 
+    (guardado)="onReservaCreada()">
+  </app-crear-reserva>
 }
