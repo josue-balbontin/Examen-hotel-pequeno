@@ -3,6 +3,9 @@ using Backend.Modelos.Entidades;
 using Backend.Repositorio.Usuario;
 using Backend.Repositorio.Reserva;
 using Backend.Servicios;
+using Backend.Patrones;
+using Backend.Repositorio.TipoHabitacion;
+using Backend.Servicios.TipoHabitacion;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +33,9 @@ builder.Services.AddScoped<IUsuarioServicio , UsuarioServicio>();
 builder.Services.AddScoped<IReservaRepositorio , ReservaRepositorio>();
 builder.Services.AddScoped<IReservaServicio , ReservaServicio>();
 
+builder.Services.AddScoped<ITipoHabitacionRepositorio , TipoHabitacionRepositorio>();
+builder.Services.AddScoped<ITipoHabitacionServicio , TipoHabitacionServicio>();
+
 
 
 
@@ -52,5 +58,6 @@ app.UseCors("PoliticaCors");
 app.MapControllers();
 
 Console.WriteLine("Swagger URL: http://localhost:5052/swagger/index.html");
+
 
 app.Run();
