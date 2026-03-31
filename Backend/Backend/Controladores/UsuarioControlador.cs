@@ -18,10 +18,18 @@ public class UsuarioControlador : ControllerBase
     }
     
     
-    [HttpGet]
-    public IEnumerable<string> ObtenerUsuarios()
+    [HttpGet("ObtenerUsuarios")]
+    public IActionResult ObtenerUsuarios()
     {
-        return new string[] { "Usuario1", "Usuario2" };
+        try
+        {
+            var usuarios = _servicio.ObtenerUsuarios();
+            return Ok(usuarios);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = "Error interno: " + ex.Message });
+        }
     }
     
     

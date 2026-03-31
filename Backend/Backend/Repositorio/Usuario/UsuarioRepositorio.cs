@@ -1,9 +1,7 @@
 using Backend.Modelos.Entidades;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Repositorio.Usuario;
-
-
 
 public class UsuarioRepositorio : IUsuarioRepositorio
 {
@@ -23,5 +21,10 @@ public class UsuarioRepositorio : IUsuarioRepositorio
     {
         _contexto.Usuarios.Add(usuario);
         _contexto.SaveChanges(); 
+    }
+
+    public IEnumerable<Modelos.Entidades.Usuario> ObtenerTodos()
+    {
+        return _contexto.Usuarios.AsNoTracking().ToList();
     }
 }

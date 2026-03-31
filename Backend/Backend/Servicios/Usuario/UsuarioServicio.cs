@@ -27,4 +27,9 @@ public class UsuarioServicio : IUsuarioServicio
 
         _repositorio.Agregar(usuario);
     }
+
+    public IEnumerable<Usuario> ObtenerUsuarios()
+    {
+        return _repositorio.ObtenerTodos();
+    }
 }

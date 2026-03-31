@@ -7,5 +7,7 @@ public interface IUsuarioRepositorio
     bool ExisteDocumento(string documentoIdentidad);
     
     void Agregar(Usuario usuario);
+
+    IEnumerable<Usuario> ObtenerTodos();
     
 }
