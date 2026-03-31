@@ -6,6 +6,7 @@ using Backend.Servicios;
 using Backend.Patrones;
 using Backend.Repositorio.TipoHabitacion;
 using Backend.Servicios.TipoHabitacion;
+using Backend.Repositorio.Servicio;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,7 +36,8 @@ builder.Services.AddScoped<IReservaServicio , ReservaServicio>();
 
 builder.Services.AddScoped<ITipoHabitacionRepositorio , TipoHabitacionRepositorio>();
 builder.Services.AddScoped<ITipoHabitacionServicio , TipoHabitacionServicio>();
-
+builder.Services.AddScoped<IServicioRepositorio , ServicioRepositorio>();
+builder.Services.AddScoped<IServicioServicio , ServicioServicio>();
 
 
 

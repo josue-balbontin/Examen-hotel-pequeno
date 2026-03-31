@@ -50,7 +50,7 @@ public class ReservaControlador : ControllerBase
 
     }
     
-    [HttpPut("{idReserva}/checkin")]
+    [HttpPut("/checkin/{idReserva}")]
     public IActionResult HacerCheckIn(int idReserva)
     {
         try
