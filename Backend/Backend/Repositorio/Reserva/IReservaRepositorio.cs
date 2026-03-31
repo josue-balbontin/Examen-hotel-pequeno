@@ -15,5 +15,7 @@ public interface IReservaRepositorio
     Modelos.Entidades.Reserva ObtenerPorId(int id);
     
     void ActualizarReserva(Modelos.Entidades.Reserva reserva);
+    
+    IEnumerable<Habitacione> ObtenerHabitacionesDisponibles(DateOnly ingreso, DateOnly salida);
 
 }

@@ -1,0 +1,47 @@
+<div class="tabla-container">
+
+
+  <div class="tabla-wrapper">
+    <table>
+      <thead>
+        <tr>
+          @for (col of columnas; track col.contenido) {
+            <th>{{ col.titulo }}</th>
+          }
+          @if (acciones.length > 0) {
+            <th>Acciones</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of datos; track $index) {
+          <tr>
+            @for (col of columnas; track col.contenido) {
+              <td>{{ getValor(item, col.contenido) }}</td>
+            }
+            @if (acciones.length > 0) {
+              <td class="acciones">
+                @for (acc of acciones; track acc.nombre) {
+                  <button
+                    class="btn-accion"
+                    [style.color]="acc.color || '#333'"
+                    [style.borderColor]="acc.colorBorde || '#ddd'"
+                    (click)="ejecutarAccion(acc.nombre, item)">
+                    {{ acc.etiqueta }}
+                  </button>
+                }
+              </td>
+            }
+          </tr>
+        }
+        @if (datos.length === 0) {
+          <tr>
+            <td [attr.colspan]="columnas.length + (acciones.length > 0 ? 1 : 0)" class="sin-datos">
+              No hay datos disponibles
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

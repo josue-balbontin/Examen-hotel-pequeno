@@ -1,0 +1,17 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.page-header {
+  padding: 0 0 16px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.page-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+}

@@ -4,6 +4,8 @@ using Backend.Patrones;
 using Backend.Repositorio.Configuracion;
 using Backend.Repositorio.Reserva;
 using System.Globalization;
+using static Backend.Modelos.Enums.EstadosReservaEnum;
+
 
 namespace Backend.Servicios;
 
@@ -11,10 +13,7 @@ public class ReservaServicio : IReservaServicio
 {
     private readonly IReservaRepositorio _repositorio;
     private readonly IConfiguracionRepositorio _configuracionRepositorio;
-    private const int EstadoReservado = 3;
-    private const int EstadoCancelado = 4; 
-    private const int EstadoOcupado = 2;
-    private const int EstadoDisponible = 1; 
+
 
     public ReservaServicio(IReservaRepositorio repositorio, IConfiguracionRepositorio configuracionRepositorio)
     {
@@ -41,7 +40,7 @@ public class ReservaServicio : IReservaServicio
             throw new InvalidOperationException("La habitación ya tiene una reserva en el rango de fechas seleccionado.");
         }
 
-        var reserva = dto.MapearAReserva(EstadoReservado);
+        var reserva = dto.MapearAReserva((int)EstadoReservado);
 
         _repositorio.Crear(reserva, dto.IdsUsuarios);
     }
@@ -65,13 +64,13 @@ public class ReservaServicio : IReservaServicio
             throw new InvalidOperationException("El check-in ya fue realizado previamente.");
         }
 
-        if (reserva.IdEstados == EstadoCancelado || reserva.IdEstados ==  EstadoOcupado)
+        if (reserva.IdEstados == (int)EstadoCancelado || reserva.IdEstados ==  (int)EstadoOcupado)
         {
             throw new InvalidOperationException("No se puede hacer Check-in en reservas Canceladas o Ocupadas.");
         }
         
         reserva.FechaCheckin = DateTime.UtcNow;
-        reserva.IdEstados = EstadoOcupado; 
+        reserva.IdEstados = (int)EstadoOcupado; 
         
         _repositorio.ActualizarReserva(reserva); 
     }
@@ -129,8 +128,19 @@ public class ReservaServicio : IReservaServicio
         }
 
         reserva.CargoCheckout = cargo;
-        reserva.IdEstados = EstadoDisponible;
+        reserva.IdEstados = (int)EstadoDisponible;
 
         _repositorio.ActualizarReserva(reserva);
     }
+    
+    public IEnumerable<Habitacione> BuscarDisponibilidad(DateOnly ingreso, DateOnly salida)
+    {
+        if (salida <= ingreso)
+        {
+            throw new ArgumentException("La fecha de salida debe ser posterior a la de ingreso.");
+        }
+
+        return _repositorio.ObtenerHabitacionesDisponibles(ingreso, salida);
+    }
+    
 }

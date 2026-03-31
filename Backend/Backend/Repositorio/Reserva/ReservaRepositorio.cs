@@ -1,5 +1,6 @@
 using Backend.Modelos.Entidades;
 using Microsoft.EntityFrameworkCore;
+using static Backend.Modelos.Enums.EstadosReservaEnum;
 
 namespace Backend.Repositorio.Reserva;
 
@@ -68,4 +69,18 @@ public class ReservaRepositorio : IReservaRepositorio
         _contexto.Reservas.Update(reserva);
         _contexto.SaveChanges();
     }
+    
+    public IEnumerable<Habitacione> ObtenerHabitacionesDisponibles(DateOnly ingreso, DateOnly salida)
+    {
+       
+        return _contexto.Habitaciones
+            .Include(h => h.IdTipoHabitacionNavigation) 
+            .Where(h => !_contexto.Reservas.Any(r =>
+                r.IdHabitaciones == h.IdHabitaciones &&
+                r.IdEstados != ((int)EstadoCancelado) && 
+                ingreso < r.FechaSalida && 
+                salida > r.FechaIngreso))
+            .ToList();
+    }
+    
 }

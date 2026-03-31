@@ -1,0 +1,17 @@
+<div class="page-container">
+  <div class="page-header">
+    <h2>Usuarios</h2>
+  </div>
+
+  <div>
+    <button class="boton-add" (click)="agregarUsuario()">Agregar</button>
+  </div>
+
+  <app-tabla-generica [columnas]="columnas" [datos]="usuarios" [acciones]="acciones" (accion)="manejarAccion($event)">
+  </app-tabla-generica>
+</div>
+
+
+@if(registrarUsuario()){
+<app-registrar-usuario></app-registrar-usuario>
+}

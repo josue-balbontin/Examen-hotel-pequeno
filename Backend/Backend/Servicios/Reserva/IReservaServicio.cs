@@ -12,5 +12,6 @@ public interface IReservaServicio
     void RegistrarCheckIn(int idReserva);
 
     void RegistrarCheckOut(int idReserva);
-    
+
+    public IEnumerable<Habitacione> BuscarDisponibilidad(DateOnly ingreso, DateOnly salida);
 }

@@ -94,4 +94,20 @@ public class ReservaControlador : ControllerBase
         }
     }
     
+    [HttpGet("Disponibilidad")]
+    public IActionResult ObtenerDisponibilidad([FromQuery] DateOnly ingreso, [FromQuery] DateOnly salida)
+    {
+        try
+        {
+            var libres = _servicio.BuscarDisponibilidad(ingreso, salida);
+            
+            return Ok(libres);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+    
+    
 }

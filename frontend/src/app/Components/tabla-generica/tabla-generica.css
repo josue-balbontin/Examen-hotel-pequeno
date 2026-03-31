@@ -1,0 +1,57 @@
+.tabla-container {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+
+
+.tabla-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 0.85rem;
+}
+
+th {
+  background: #f7f7f7;
+  font-weight: 600;
+  color: #444;
+}
+
+tbody tr:hover {
+  background: #fafafa;
+}
+
+.acciones {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-accion {
+  padding: 5px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: #fff;
+}
+
+.btn-accion:hover {
+  background: #f0f0f0;
+}
+
+.sin-datos {
+  text-align: center;
+  padding: 32px;
+  color: #999;
+}
