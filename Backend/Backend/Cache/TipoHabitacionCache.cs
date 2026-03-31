@@ -17,5 +17,13 @@ public class TipoHabitacionCache
         return _instancia;
     }
     
-    
+    public Modelos.Entidades.TipoHabitacione ObtenerDetalle(int idTipoHabitacion)
+    {
+        if (Datos.TryGetValue(idTipoHabitacion, out var detalle))
+        {
+            return detalle;
+        }
+
+        throw new KeyNotFoundException("Tipo de habitación no encontrado en caché.");
+    }
 }

@@ -58,7 +58,9 @@ public class ReservaRepositorio : IReservaRepositorio
 
     public Modelos.Entidades.Reserva ObtenerPorId(int id)
     {
-        return _contexto.Reservas.Find(id);
+        return _contexto.Reservas.
+            Include(r => r.IdHabitacionesNavigation)
+            .FirstOrDefault(r => r.IdReservas == id);
     }
 
     public void ActualizarReserva(Modelos.Entidades.Reserva reserva)

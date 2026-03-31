@@ -71,5 +71,27 @@ public class ReservaControlador : ControllerBase
             return StatusCode(500, new { error = "Error interno: " + ex.Message });
         }
     }
+
+    [HttpPut("/checkout/{idReserva}")]
+    public IActionResult HacerCheckOut(int idReserva)
+    {
+        try
+        {
+            _servicio.RegistrarCheckOut(idReserva);
+            return Ok(new { mensaje = "Check-out registrado exitosamente." });
+        }
+        catch (ArgumentException ex)
+        {
+            return NotFound(new { error = ex.Message });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = "Error interno: " + ex.Message });
+        }
+    }
     
 }

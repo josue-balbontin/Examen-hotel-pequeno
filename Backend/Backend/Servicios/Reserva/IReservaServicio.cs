@@ -10,5 +10,7 @@ public interface IReservaServicio
     IEnumerable<Reserva> ObtenerReservas();
     
     void RegistrarCheckIn(int idReserva);
+
+    void RegistrarCheckOut(int idReserva);
     
 }
