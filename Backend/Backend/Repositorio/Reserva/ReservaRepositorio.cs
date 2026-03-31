@@ -55,4 +55,15 @@ public class ReservaRepositorio : IReservaRepositorio
     {
         return _contexto.Reservas.AsNoTracking().ToList();
     }
+
+    public Modelos.Entidades.Reserva ObtenerPorId(int id)
+    {
+        return _contexto.Reservas.Find(id);
+    }
+
+    public void ActualizarReserva(Modelos.Entidades.Reserva reserva)
+    {
+        _contexto.Reservas.Update(reserva);
+        _contexto.SaveChanges();
+    }
 }

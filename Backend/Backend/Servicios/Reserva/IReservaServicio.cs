@@ -8,4 +8,7 @@ public interface IReservaServicio
     void CrearReserva(CrearReservaDTO dto);
 
     IEnumerable<Reserva> ObtenerReservas();
+    
+    void RegistrarCheckIn(int idReserva);
+    
 }

@@ -49,4 +49,27 @@ public class ReservaControlador : ControllerBase
         
 
     }
+    
+    [HttpPut("{idReserva}/checkin")]
+    public IActionResult HacerCheckIn(int idReserva)
+    {
+        try
+        {
+            _servicio.RegistrarCheckIn(idReserva);
+            return Ok(new { mensaje = "Check-in registrado exitosamente. El huésped ya está en estadía." });
+        }
+        catch (ArgumentException ex)
+        {
+            return NotFound(new { error = ex.Message }); 
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { error = ex.Message }); 
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = "Error interno: " + ex.Message });
+        }
+    }
+    
 }

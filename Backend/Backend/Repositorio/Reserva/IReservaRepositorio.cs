@@ -11,4 +11,9 @@ public interface IReservaRepositorio
     void Crear(Modelos.Entidades.Reserva reserva, List<int> idsUsuarios);
 
     List<Modelos.Entidades.Reserva> ObtenerTodas();
+
+    Modelos.Entidades.Reserva ObtenerPorId(int id);
+    
+    void ActualizarReserva(Modelos.Entidades.Reserva reserva);
+
 }
