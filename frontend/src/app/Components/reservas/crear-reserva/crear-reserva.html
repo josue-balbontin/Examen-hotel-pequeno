@@ -17,13 +17,11 @@
         <div class="fechas-fila">
           <div class="field">
             <label>Fecha de Ingreso *</label>
-            <input type="date" formControlName="fechaIngreso"
-              [class.invalid]="reservaForm.get('fechaIngreso')?.invalid && reservaForm.get('fechaIngreso')?.touched">
+            <input type="date" formControlName="fechaIngreso">
           </div>
           <div class="field">
             <label>Fecha de Salida *</label>
-            <input type="date" formControlName="fechaSalida"
-              [class.invalid]="reservaForm.get('fechaSalida')?.invalid && reservaForm.get('fechaSalida')?.touched">
+            <input type="date" formControlName="fechaSalida">
           </div>
         </div>
         <button type="button" class="btn-buscar" (click)="buscarDisponibilidad()">Consultar Disponibilidad</button>
@@ -33,8 +31,7 @@
       <div class="seccion">
         <div class="field">
           <label>1. Variación de Habitación *</label>
-          <select formControlName="idTipoHabitacion"
-            [class.invalid]="reservaForm.get('idTipoHabitacion')?.invalid && reservaForm.get('idTipoHabitacion')?.touched">
+          <select formControlName="idTipoHabitacion">
             <option value="" disabled selected>Seleccione un tipo...</option>
             @for (tipo of tiposDisponibles; track tipo.idTipoHabitaciones) {
             <option [value]="tipo.idTipoHabitaciones">{{ tipo.nombre }}</option>
@@ -53,8 +50,7 @@
 
         <div class="field">
           <label>2. Especializar Habitación Asignada *</label>
-          <select formControlName="idHabitacion"
-            [class.invalid]="reservaForm.get('idHabitacion')?.invalid && reservaForm.get('idHabitacion')?.touched">
+          <select formControlName="idHabitacion">
             <option value="" disabled selected>Elija número de Cuarto...</option>
             @for (hab of habitacionesFiltradas; track hab.idHabitaciones) {
             <option [value]="hab.idHabitaciones">Num: {{ hab.numeroHabitacion }}</option>
@@ -68,8 +64,7 @@
         <div class="field field-multiple">
           <label>3. Adicionar Huésped(es) (Múltiple) *</label>
           <span class="info-dim">Ctrl + click para seleccionar varios. Mínimo 1.</span>
-          <select multiple formControlName="idsUsuarios" size="4"
-            [class.invalid]="reservaForm.get('idsUsuarios')?.invalid && reservaForm.get('idsUsuarios')?.touched">
+          <select multiple formControlName="idsUsuarios" size="4">
             @for (usuario of usuariosDisponibles; track usuario.idUsuarios) {
             <option [value]="usuario.idUsuarios">{{ usuario.nombres }} {{ usuario.apellidos }} ({{
               usuario.documentoIdentidad }})</option>

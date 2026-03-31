@@ -56,12 +56,11 @@ export class RegistrarUsuario {
       error: (err) => {
         this.estaGuardando = false;
 
-        if (err.error && err.error.message) {
-          this.mensajeError = err.error.message;
-        } else if (err.status === 409 || err.status === 400) {
-          this.mensajeError = "Ya existe un huésped con este Documento de Identidad o hay campos inválidos.";
-        } else {
-          this.mensajeError = "Ha ocurrido un error inesperado al guardar el huésped.";
+        if (err.error && err.error.error) {
+          this.mensajeError = err.error.error;
+        }
+        else {
+          this.mensajeError = "Ha ocurrido un error inesperado al guardar el Usuario.";
         }
 
         this.error.set(true);

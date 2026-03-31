@@ -110,7 +110,7 @@ public class ReservaControlador : ControllerBase
     }
     
     
-    [HttpPut("cancelar/{id}")]
+    [HttpPut("/cancelar/{id}")]
     public IActionResult CancelarReserva(int id)
     {
         try

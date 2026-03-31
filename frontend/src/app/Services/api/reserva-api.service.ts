@@ -35,6 +35,8 @@ export class ReservaApiService {
       fechaSalida: payload.fechaSalida
     };
 
+    console.log(envio);
+
     return this.http.post<any>(`${this.apiUrl}/CrearReserva`, envio);
   }
 

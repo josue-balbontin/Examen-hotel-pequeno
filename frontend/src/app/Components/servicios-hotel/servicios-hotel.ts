@@ -35,7 +35,7 @@ export class ServiciosHotel implements OnInit {
     this.cargando.set(true);
     this.servicioApi.obtenerContactos().subscribe({
       next: (data) => {
-        this.servicios = [...data];
+        this.servicios = Array.isArray(data) ? [...data] : [];
         this.cargando.set(false);
         this.cdr.detectChanges();
       },

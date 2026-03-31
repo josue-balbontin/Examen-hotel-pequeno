@@ -87,7 +87,8 @@
   border-color: #666;
 }
 
-.field input.invalid, .field select.invalid {
+.field input.ng-invalid.ng-touched, 
+.field select.ng-invalid.ng-touched {
   border-color: #ef4444;
   background: #fef2f2;
 }

@@ -88,7 +88,7 @@ export class CrearReserva implements OnInit {
     }
 
     if (new Date(fSal) < new Date(fIng)) {
-      this.mostrarErrorFront("La fecha de salida no puede ser anterior a la de ingreso (HU-02).");
+      this.mostrarErrorFront("La fecha de salida no puede ser anterior a la de ingreso ");
       return;
     }
 
@@ -98,8 +98,8 @@ export class CrearReserva implements OnInit {
       next: (data) => {
         this.habitacionesDisponibles = data;
 
-
         const tiposMap = new Map<number, TipoHabitacion>();
+
         data.forEach((hab: Habitacion) => {
           const t = hab.idTipoHabitacionNavigation;
           if (t && !tiposMap.has(t.idTipoHabitaciones)) {
@@ -120,7 +120,7 @@ export class CrearReserva implements OnInit {
         this.cdr.detectChanges();
       },
       error: (err) => {
-        this.mostrarErrorFront("Error al buscar disponibilidad: " + (err.error?.message || err.message));
+        this.mostrarErrorFront("Error al buscar disponibilidad: " + (err.error.error || err.message));
         this.cargando.set(false);
         this.cdr.detectChanges();
       }
@@ -169,7 +169,7 @@ export class CrearReserva implements OnInit {
         this.guardado.emit();
       },
       error: (err) => {
-        this.mostrarErrorFront("Error al crear reserva: " + (err.error?.message || err.message));
+        this.mostrarErrorFront("Error al crear reserva: " + (err.error.error || err.message));
         this.cargando.set(false);
         this.cdr.detectChanges();
       }

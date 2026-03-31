@@ -9,27 +9,28 @@
       <div class="field">
         <label>Nombres *</label>
         <input type="text" formControlName="nombres" placeholder="Ingrese nombres"
-               [class.invalid]="usuarioForm.get('nombres')?.invalid && usuarioForm.get('nombres')?.touched">
+          [class.invalid]="usuarioForm.get('nombres')?.invalid && usuarioForm.get('nombres')?.touched">
         @if (usuarioForm.get('nombres')?.hasError('required') && usuarioForm.get('nombres')?.touched) {
-          <span class="error-msg">Requerido</span>
+        <span class="error-msg">Requerido</span>
         }
       </div>
 
       <div class="field">
         <label>Apellidos *</label>
         <input type="text" formControlName="apellidos" placeholder="Ingrese apellidos"
-               [class.invalid]="usuarioForm.get('apellidos')?.invalid && usuarioForm.get('apellidos')?.touched">
+          [class.invalid]="usuarioForm.get('apellidos')?.invalid && usuarioForm.get('apellidos')?.touched">
         @if (usuarioForm.get('apellidos')?.hasError('required') && usuarioForm.get('apellidos')?.touched) {
-          <span class="error-msg">Requerido</span>
+        <span class="error-msg">Requerido</span>
         }
       </div>
 
       <div class="field">
         <label>Documento *</label>
         <input type="text" formControlName="documentoIdentidad" placeholder="12345678"
-               [class.invalid]="usuarioForm.get('documentoIdentidad')?.invalid && usuarioForm.get('documentoIdentidad')?.touched">
-        @if (usuarioForm.get('documentoIdentidad')?.hasError('required') && usuarioForm.get('documentoIdentidad')?.touched) {
-          <span class="error-msg">Requerido</span>
+          [class.invalid]="usuarioForm.get('documentoIdentidad')?.invalid && usuarioForm.get('documentoIdentidad')?.touched">
+        @if (usuarioForm.get('documentoIdentidad')?.hasError('required') &&
+        usuarioForm.get('documentoIdentidad')?.touched) {
+        <span class="error-msg">Requerido</span>
         }
       </div>
 
@@ -45,7 +46,14 @@
 
       <div class="field">
         <label>Edad</label>
-        <input type="number" formControlName="edad" placeholder="0">
+        <input type="number" formControlName="edad" placeholder="0"
+          [class.invalid]="usuarioForm.get('edad')?.invalid && usuarioForm.get('edad')?.touched">
+        @if (usuarioForm.get('edad')?.hasError('min') && usuarioForm.get('edad')?.touched) {
+        <span class="error-msg">La edad no puede ser negativa.</span>
+        }
+        @if (usuarioForm.get('edad')?.hasError('max') && usuarioForm.get('edad')?.touched) {
+        <span class="error-msg">Ingresa una edad válida.</span>
+        }
       </div>
 
       <div class="actions">
@@ -57,5 +65,5 @@
 </div>
 
 @if (error()) {
-  <app-mostrarerror [error]="error" [mensaje]="mensajeError"></app-mostrarerror>
+<app-mostrarerror [error]="error" [mensaje]="mensajeError"></app-mostrarerror>
 }
