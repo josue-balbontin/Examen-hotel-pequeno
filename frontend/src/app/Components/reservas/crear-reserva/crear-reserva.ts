@@ -4,14 +4,14 @@ import { ReservaApiService } from '../../../Services/api/reserva-api.service';
 import { UsuarioApiService } from '../../../Services/api/usuario-api.service';
 import { CrearReservaDto } from '../../../Models/crear-reserva.dto';
 import { PantallaCargaComponent } from '../../pantallas_avisos/pantalla-carga/pantalla-carga.component';
-import { MostrarerrorComponent } from '../../pantallas_avisos/mostrarerror/mostrarerror.component';
 import { Usuario } from '../../../Models/usuario.model';
-import { NgClass } from '@angular/common';
+import { Habitacion } from '../../../Models/habitacion.model';
+import { TipoHabitacion } from '../../../Models/tipo-habitacion.model';
 
 @Component({
   selector: 'app-crear-reserva',
   standalone: true,
-  imports: [ReactiveFormsModule, PantallaCargaComponent, MostrarerrorComponent, NgClass],
+  imports: [ReactiveFormsModule, PantallaCargaComponent],
   templateUrl: './crear-reserva.html',
   styleUrl: './crear-reserva.css',
 })
@@ -27,20 +27,15 @@ export class CrearReserva implements OnInit {
   mensajeErrorFront: string = '';
 
 
-  habitacionesDisponibles: any[] = [];
-  tiposDisponibles: any[] = [];
-  habitacionesFiltradas: any[] = [];
+  habitacionesDisponibles: Habitacion[] = [];
+  tiposDisponibles: TipoHabitacion[] = [];
+  habitacionesFiltradas: Habitacion[] = [];
   usuariosDisponibles: Usuario[] = [];
 
 
-  tipoSeleccionadoInfo: any = null;
+  tipoSeleccionadoInfo: TipoHabitacion | null = null;
 
-  constructor(
-    private fb: FormBuilder,
-    private reservaApi: ReservaApiService,
-    private usuarioApi: UsuarioApiService,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private fb: FormBuilder, private reservaApi: ReservaApiService, private usuarioApi: UsuarioApiService, private cdr: ChangeDetectorRef) {
     this.reservaForm = this.fb.group({
       fechaIngreso: ['', Validators.required],
       fechaSalida: ['', Validators.required],
@@ -57,7 +52,7 @@ export class CrearReserva implements OnInit {
       this.reservaForm.get('idHabitacion')?.reset('');
       if (idTipo) {
 
-        this.tipoSeleccionadoInfo = this.tiposDisponibles.find(t => t.idTipoHabitaciones === Number(idTipo));
+        this.tipoSeleccionadoInfo = this.tiposDisponibles.find(t => t.idTipoHabitaciones === Number(idTipo)) || null;
 
         this.habitacionesFiltradas = this.habitacionesDisponibles.filter(h => h.idTipoHabitacion === Number(idTipo));
         this.reservaForm.get('idHabitacion')?.enable();
@@ -104,8 +99,8 @@ export class CrearReserva implements OnInit {
         this.habitacionesDisponibles = data;
 
 
-        const tiposMap = new Map();
-        data.forEach((hab: any) => {
+        const tiposMap = new Map<number, TipoHabitacion>();
+        data.forEach((hab: Habitacion) => {
           const t = hab.idTipoHabitacionNavigation;
           if (t && !tiposMap.has(t.idTipoHabitaciones)) {
             tiposMap.set(t.idTipoHabitaciones, t);
@@ -135,14 +130,26 @@ export class CrearReserva implements OnInit {
   guardar(): void {
     if (this.reservaForm.invalid) {
       this.reservaForm.markAllAsTouched();
+      this.mostrarErrorFront("Por favor complete todos los campos obligatorios.");
       return;
     }
 
-    const val = this.reservaForm.value;
+    const val = this.reservaForm.getRawValue();
+
+    if (!val.idHabitacion || val.idHabitacion === '') {
+      this.mostrarErrorFront("Debe seleccionar una habitación asignada.");
+      return;
+    }
+
+    if (!val.idsUsuarios || val.idsUsuarios.length === 0) {
+      this.mostrarErrorFront("Debe adicionar al menos un huésped.");
+      return;
+    }
 
 
-    if (this.tipoSeleccionadoInfo && val.idsUsuarios.length > this.tipoSeleccionadoInfo.capacidad) {
-      this.mostrarErrorFront(`La cantidad de huéspedes seleccionados (${val.idsUsuarios.length}) supera la capacidad del Tipo de Habitación (${this.tipoSeleccionadoInfo.capacidad}).`);
+    const tipo = this.tipoSeleccionadoInfo;
+    if (tipo && tipo.capacidad && val.idsUsuarios.length > tipo.capacidad) {
+      this.mostrarErrorFront(`La cantidad de huéspedes seleccionados (${val.idsUsuarios.length}) supera la capacidad del Tipo de Habitación (${tipo.capacidad}).`);
       return;
     }
 
