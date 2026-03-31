@@ -8,4 +8,5 @@ export interface AccionTabla {
   etiqueta: string;
   color?: string;
   colorBorde?: string;
+  mostrar?: (item: any) => boolean;
 }

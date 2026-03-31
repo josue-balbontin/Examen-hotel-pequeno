@@ -110,4 +110,19 @@ public class ReservaControlador : ControllerBase
     }
     
     
+    [HttpPut("cancelar/{id}")]
+    public IActionResult CancelarReserva(int id)
+    {
+        try
+        {
+            _servicio.CancelarReserva(id);
+            return Ok(new { mensaje = "Reserva cancelada exitosamente." });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+    
+    
 }

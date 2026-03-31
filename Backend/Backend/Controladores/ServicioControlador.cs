@@ -33,5 +33,9 @@ public class ServicioControlador : ControllerBase
             return StatusCode(500, new { error = "Ocurrió un error interno en el servidor: " + ex.Message });
         }
     }
+    
+    
+    
+    
 }
 

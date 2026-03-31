@@ -59,15 +59,18 @@ public class ReservaServicio : IReservaServicio
             throw new ArgumentException("Reserva no encontrada.");
         }
         
+
         if (reserva.FechaCheckin != null)
         {
             throw new InvalidOperationException("El check-in ya fue realizado previamente.");
         }
-
-        if (reserva.IdEstados == (int)EstadoCancelado || reserva.IdEstados ==  (int)EstadoOcupado)
+        
+        if (reserva.IdEstados != (int)EstadoReservado)
         {
-            throw new InvalidOperationException("No se puede hacer Check-in en reservas Canceladas o Ocupadas.");
+            throw new InvalidOperationException("Solo se puede hacer Check-in a una reserva en estado 'Reservado'.");
         }
+
+
         
         reserva.FechaCheckin = DateTime.UtcNow;
         reserva.IdEstados = (int)EstadoOcupado; 
@@ -128,7 +131,7 @@ public class ReservaServicio : IReservaServicio
         }
 
         reserva.CargoCheckout = cargo;
-        reserva.IdEstados = (int)EstadoDisponible;
+        reserva.IdEstados = (int)EstadoFinalizado;
 
         _repositorio.ActualizarReserva(reserva);
     }
@@ -141,6 +144,26 @@ public class ReservaServicio : IReservaServicio
         }
 
         return _repositorio.ObtenerHabitacionesDisponibles(ingreso, salida);
+    }
+
+    public void CancelarReserva(int idReserva)
+    {
+        var reserva = _repositorio.ObtenerPorId(idReserva);
+        
+        if (reserva == null)
+        {
+            throw new ArgumentException("Reserva no encontrada.");
+        }
+        
+        if (reserva.IdEstados != (int)EstadoReservado)
+        {
+            throw new InvalidOperationException("Solo se pueden cancelar reservas que estén en estado 'Reservado'.");
+        }
+        
+
+        reserva.IdEstados = (int)EstadoCancelado; 
+        
+        _repositorio.ActualizarReserva(reserva);
     }
     
 }

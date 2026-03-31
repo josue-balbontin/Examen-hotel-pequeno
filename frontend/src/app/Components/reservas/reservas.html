@@ -1,1 +1,20 @@
-<p>reservas works!</p>
+<div class="page-container">
+  <div class="page-header">
+    <h2>Registro de Reservas</h2>
+  </div>
+
+  <app-tabla-generica 
+    [columnas]="columnas" 
+    [datos]="reservas" 
+    [acciones]="acciones"
+    (accion)="manejarAccion($event)">
+  </app-tabla-generica>
+</div>
+
+@if (cargando()) {
+  <app-pantalla-carga></app-pantalla-carga>
+}
+
+@if (error()) {
+  <app-mostrarerror [error]="error" [mensaje]="mensajeError"></app-mostrarerror>
+}

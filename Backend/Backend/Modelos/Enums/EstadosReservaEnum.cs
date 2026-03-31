@@ -6,6 +6,6 @@ public enum EstadosReservaEnum
      EstadoOcupado = 2,
      EstadoReservado = 3,
      EstadoCancelado = 4, 
-
+     EstadoFinalizado = 5
     
 }

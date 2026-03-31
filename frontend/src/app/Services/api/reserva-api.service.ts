@@ -12,18 +12,18 @@ import { Reserva } from '../../Models/reserva.model';
 export class ReservaApiService {
   private apiUrl = environment.apiUrl + '/ReservaControlador';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private mapearReserva(item: any): Reserva {
     const reserva = new Reserva();
-        reserva.idReservas = item.idReservas ?? 0;
-        reserva.idHabitaciones = item.idHabitaciones ?? null;
-        reserva.fechaIngreso = item.fechaIngreso ?? null;
-        reserva.fechaSalida = item.fechaSalida ?? null;
-        reserva.idEstados = item.idEstados ?? null;
-        reserva.fechaCheckin = item.fechaCheckin ?? null;
-        reserva.fechaCheckout = item.fechaCheckout ?? null;
-        reserva.cargoCheckout = item.cargoCheckout ?? null;
+    reserva.idReservas = item.idReservas ?? 0;
+    reserva.idHabitaciones = item.idHabitaciones ?? null;
+    reserva.fechaIngreso = item.fechaIngreso ?? null;
+    reserva.fechaSalida = item.fechaSalida ?? null;
+    reserva.idEstados = item.idEstados ?? null;
+    reserva.fechaCheckin = item.fechaCheckin ?? null;
+    reserva.fechaCheckout = item.fechaCheckout ?? null;
+    reserva.cargoCheckout = item.cargoCheckout ?? null;
     return reserva;
   }
 
@@ -43,7 +43,7 @@ export class ReservaApiService {
       .get<any[]>(`${this.apiUrl}/ObtenerReservas`)
       .pipe(
         map(
-            (data) => data.map((item) => this.mapearReserva(item))
+          (data) => data.map((item) => this.mapearReserva(item))
         )
       );
   }
@@ -55,4 +55,13 @@ export class ReservaApiService {
   registrarCheckOut(idReserva: number) {
     return this.http.put<any>(`${environment.apiUrl}/checkout/${idReserva}`, {});
   }
+
+  cancelarReserva(idReserva: number) {
+    return this.http.put<any>(`${environment.apiUrl}/cancelar/${idReserva}`, {});
+  }
+
+  disponibilidadHabitaciones(fechaIngreso: string, fechaSalida: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/Disponibilidad?ingreso=${fechaIngreso}&salida=${fechaSalida}`);
+  }
+
 }

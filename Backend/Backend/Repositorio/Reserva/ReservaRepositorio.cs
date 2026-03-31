@@ -29,11 +29,13 @@ public class ReservaRepositorio : IReservaRepositorio
 
     public bool ExisteSolapamiento(int idHabitacion, DateOnly ingreso, DateOnly salida)
     {
-     
         return _contexto.Reservas.Any(r =>
             r.IdHabitaciones == idHabitacion &&
+            r.IdEstados != (int)EstadoCancelado && 
+            r.IdEstados != (int)EstadoFinalizado && 
             r.FechaIngreso != null && r.FechaSalida != null &&
             ingreso < r.FechaSalida && salida > r.FechaIngreso);
+        
     }
 
     public void Crear(Modelos.Entidades.Reserva reserva, List<int> idsUsuarios)
@@ -77,8 +79,8 @@ public class ReservaRepositorio : IReservaRepositorio
             .Include(h => h.IdTipoHabitacionNavigation) 
             .Where(h => !_contexto.Reservas.Any(r =>
                 r.IdHabitaciones == h.IdHabitaciones &&
-                r.IdEstados != ((int)EstadoCancelado) && 
-                ingreso < r.FechaSalida && 
+                r.IdEstados != (int)EstadoCancelado &&
+                r.IdEstados != (int)EstadoFinalizado && 
                 salida > r.FechaIngreso))
             .ToList();
     }

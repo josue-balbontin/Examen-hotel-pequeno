@@ -14,4 +14,7 @@ public interface IReservaServicio
     void RegistrarCheckOut(int idReserva);
 
     public IEnumerable<Habitacione> BuscarDisponibilidad(DateOnly ingreso, DateOnly salida);
+    
+    void CancelarReserva(int idReserva);
+    
 }

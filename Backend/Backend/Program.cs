@@ -24,7 +24,11 @@ builder.Services.AddCors(options =>
 
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 
 builder.Services.AddDbContext<HotelDbContext>(options =>
     options.UseNpgsql("Host=localhost;Database=hotel_pequeno;Username=postgres;Password=273153"));

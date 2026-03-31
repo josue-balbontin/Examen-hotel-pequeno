@@ -22,13 +22,15 @@
             @if (acciones.length > 0) {
               <td class="acciones">
                 @for (acc of acciones; track acc.nombre) {
-                  <button
-                    class="btn-accion"
-                    [style.color]="acc.color || '#333'"
-                    [style.borderColor]="acc.colorBorde || '#ddd'"
-                    (click)="ejecutarAccion(acc.nombre, item)">
-                    {{ acc.etiqueta }}
-                  </button>
+                  @if (!acc.mostrar || acc.mostrar(item)) {
+                    <button
+                      class="btn-accion"
+                      [style.color]="acc.color || '#333'"
+                      [style.borderColor]="acc.colorBorde || '#ddd'"
+                      (click)="ejecutarAccion(acc.nombre, item)">
+                      {{ acc.etiqueta }}
+                    </button>
+                  }
                 }
               </td>
             }
