@@ -1,1 +1,61 @@
-<p>registrar-usuario works!</p>
+<div class="modal">
+  <div class="modal-box">
+    <div class="header">
+      <h3>Registrar Huésped</h3>
+      <span class="cerrar" (click)="cerrarModal()">✕</span>
+    </div>
+
+    <form [formGroup]="usuarioForm" (ngSubmit)="guardar()">
+      <div class="field">
+        <label>Nombres *</label>
+        <input type="text" formControlName="nombres" placeholder="Ingrese nombres"
+               [class.invalid]="usuarioForm.get('nombres')?.invalid && usuarioForm.get('nombres')?.touched">
+        @if (usuarioForm.get('nombres')?.hasError('required') && usuarioForm.get('nombres')?.touched) {
+          <span class="error-msg">Requerido</span>
+        }
+      </div>
+
+      <div class="field">
+        <label>Apellidos *</label>
+        <input type="text" formControlName="apellidos" placeholder="Ingrese apellidos"
+               [class.invalid]="usuarioForm.get('apellidos')?.invalid && usuarioForm.get('apellidos')?.touched">
+        @if (usuarioForm.get('apellidos')?.hasError('required') && usuarioForm.get('apellidos')?.touched) {
+          <span class="error-msg">Requerido</span>
+        }
+      </div>
+
+      <div class="field">
+        <label>Documento *</label>
+        <input type="text" formControlName="documentoIdentidad" placeholder="12345678"
+               [class.invalid]="usuarioForm.get('documentoIdentidad')?.invalid && usuarioForm.get('documentoIdentidad')?.touched">
+        @if (usuarioForm.get('documentoIdentidad')?.hasError('required') && usuarioForm.get('documentoIdentidad')?.touched) {
+          <span class="error-msg">Requerido</span>
+        }
+      </div>
+
+      <div class="field">
+        <label>Teléfono</label>
+        <input type="text" formControlName="telefono" placeholder="Ej. 77712345">
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="correo@ejemplo.com">
+      </div>
+
+      <div class="field">
+        <label>Edad</label>
+        <input type="number" formControlName="edad" placeholder="0">
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn-secundario" (click)="cerrarModal()">Cancelar</button>
+        <button type="submit" class="btn-primario" [disabled]="estaGuardando">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+@if (error()) {
+  <app-mostrarerror [error]="error" [mensaje]="mensajeError"></app-mostrarerror>
+}

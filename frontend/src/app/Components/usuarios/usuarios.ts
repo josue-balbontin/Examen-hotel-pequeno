@@ -4,10 +4,11 @@ import { ColumnaTabla, AccionTabla } from '../../Models/tabla-generica/tabla-gen
 import { UsuarioApiService } from '../../Services/api/usuario-api.service';
 import { Usuario } from '../../Models/usuario.model';
 import { RegistrarUsuario } from './registrar-usuario/registrar-usuario';
+import { PantallaCargaComponent } from '../pantallas_avisos/pantalla-carga/pantalla-carga.component';
 
 @Component({
   selector: 'app-usuarios',
-  imports: [TablaGenerica, RegistrarUsuario],
+  imports: [TablaGenerica, RegistrarUsuario, PantallaCargaComponent],
   templateUrl: './usuarios.html',
   styleUrl: './usuarios.css',
 })
@@ -31,6 +32,7 @@ export class Usuarios implements OnInit {
 
 
   registrarUsuario: WritableSignal<boolean> = signal<boolean>(false);
+  cargando: WritableSignal<boolean> = signal<boolean>(false);
 
   constructor(private usuarioApi: UsuarioApiService, private cdr: ChangeDetectorRef) { }
 
@@ -39,34 +41,34 @@ export class Usuarios implements OnInit {
   }
 
   cargarUsuarios(): void {
+    this.cargando.set(true);
     this.usuarioApi.obtenerUsuarios().subscribe({
       next: (data) => {
         this.usuarios = [...data];
+        this.cargando.set(false);
         this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Error al cargar usuarios:', err);
+        this.cargando.set(false);
+        this.cdr.detectChanges();
       }
     });
   }
 
-  manejarAccion(event: { nombre: string; item: any }): void {
-    switch (event.nombre) {
-      case 'editar':
-        console.log('Editar usuario:', event.item);
-        break;
-      case 'eliminar':
-        console.log('Eliminar usuario:', event.item);
-        break;
-    }
-  }
+
 
   agregarUsuario(): void {
     this.registrarUsuario.set(true);
   }
 
+  cerrarModalRegistro(): void {
+    this.registrarUsuario.set(false);
+  }
 
-
-
+  onHuespedGuardado(): void {
+    this.cerrarModalRegistro();
+    this.cargarUsuarios();
+  }
 
 }

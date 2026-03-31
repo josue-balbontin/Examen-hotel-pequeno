@@ -1,1 +1,12 @@
-<p>servicios-hotel works!</p>
+<div class="page-container">
+  <div class="page-header">
+    <h2>Contactos de Servicios</h2>
+  </div>
+
+  <app-tabla-generica [columnas]="columnas" [datos]="servicios" [acciones]="acciones">
+  </app-tabla-generica>
+</div>
+
+@if (cargando()) {
+<app-pantalla-carga></app-pantalla-carga>
+}
