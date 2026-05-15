@@ -110,24 +110,43 @@ public class ReservaServicio : IReservaServicio
 
         var horaLimite = TimeSpan.Parse(horaLimiteStr, CultureInfo.InvariantCulture);
         var porcentajeRecargo = decimal.Parse(porcentajeStr, CultureInfo.InvariantCulture);
+        
+        
+        var hoy = DateOnly.FromDateTime(DateTime.Now);
+        var salida = reserva.FechaSalida.Value;
+        var horaActual = DateTime.Now.TimeOfDay;
 
-        var fechaSalida = reserva.FechaSalida.Value.ToDateTime(TimeOnly.MinValue);
-        var limiteCheckout = fechaSalida.Add(horaLimite);
+        var excedeFechaSalida = hoy > salida;
+        var excedeHoraEnMismaFecha = hoy == salida && horaActual > horaLimite;
 
         var cargo = 0m;
 
-        if (ahora > limiteCheckout)
+        if (excedeFechaSalida || excedeHoraEnMismaFecha)
         {
             if (reserva.IdHabitacionesNavigation?.IdTipoHabitacion == null)
             {
                 throw new InvalidOperationException("No se pudo determinar el tipo de habitación para calcular el recargo.");
             }
 
+            var idTipoHabitacion = reserva.IdHabitacionesNavigation.IdTipoHabitacion.Value;
             var cache = TipoHabitacionCache.ObtenerInstancia();
-            var detalle = cache.ObtenerDetalle(reserva.IdHabitacionesNavigation.IdTipoHabitacion.Value);
-            var precio = detalle.PrecioReferencia ?? throw new InvalidOperationException("El tipo de habitación no tiene un precio de referencia configurado.");
+            decimal? precio = null;
+            
 
-            cargo = precio * porcentajeRecargo;
+            var detalleReserva = reserva.IdHabitacionesNavigation.IdTipoHabitacionNavigation;
+            if (detalleReserva != null)
+            {
+                    cache.Datos[idTipoHabitacion] = detalleReserva;
+                    precio = detalleReserva.PrecioReferencia;
+            }
+            
+
+            if (precio == null)
+            {
+                throw new InvalidOperationException("No se encontró un precio de referencia para el tipo de habitación.");
+            }
+
+            cargo = precio.Value * porcentajeRecargo;
         }
 
         reserva.CargoCheckout = cargo;

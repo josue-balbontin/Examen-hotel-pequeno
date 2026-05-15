@@ -63,6 +63,7 @@ public class ReservaRepositorio : IReservaRepositorio
     {
         return _contexto.Reservas.
             Include(r => r.IdHabitacionesNavigation)
+            .ThenInclude(h => h!.IdTipoHabitacionNavigation)
             .FirstOrDefault(r => r.IdReservas == id);
     }
 
