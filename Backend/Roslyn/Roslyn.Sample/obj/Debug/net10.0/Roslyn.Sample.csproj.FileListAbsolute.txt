@@ -1,0 +1,12 @@
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\bin\Debug\net10.0\Roslyn.Sample.deps.json
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\bin\Debug\net10.0\Roslyn.Sample.dll
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\bin\Debug\net10.0\Roslyn.Sample.pdb
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\obj\Debug\net10.0\Roslyn.Sample.GeneratedMSBuildEditorConfig.editorconfig
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\obj\Debug\net10.0\Roslyn.Sample.AssemblyInfoInputs.cache
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\obj\Debug\net10.0\Roslyn.Sample.AssemblyInfo.cs
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\obj\Debug\net10.0\Roslyn.Sample.csproj.CoreCompileInputs.cache
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\obj\Debug\net10.0\Roslyn.Sample.sourcelink.json
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\obj\Debug\net10.0\Roslyn.Sample.dll
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\obj\Debug\net10.0\refint\Roslyn.Sample.dll
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\obj\Debug\net10.0\Roslyn.Sample.pdb
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn.Sample\obj\Debug\net10.0\ref\Roslyn.Sample.dll

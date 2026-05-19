@@ -1,0 +1,13 @@
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\bin\Debug\netstandard2.0\Roslyn.deps.json
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\bin\Debug\netstandard2.0\Roslyn.dll
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\bin\Debug\netstandard2.0\Roslyn.pdb
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\obj\Debug\netstandard2.0\Roslyn.csproj.AssemblyReference.cache
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\obj\Debug\netstandard2.0\Roslyn.Resources.resources
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\obj\Debug\netstandard2.0\Roslyn.csproj.GenerateResource.cache
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\obj\Debug\netstandard2.0\Roslyn.GeneratedMSBuildEditorConfig.editorconfig
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\obj\Debug\netstandard2.0\Roslyn.AssemblyInfoInputs.cache
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\obj\Debug\netstandard2.0\Roslyn.AssemblyInfo.cs
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\obj\Debug\netstandard2.0\Roslyn.csproj.CoreCompileInputs.cache
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\obj\Debug\netstandard2.0\Roslyn.sourcelink.json
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\obj\Debug\netstandard2.0\Roslyn.dll
+D:\josue\AAuniversidad\TALLER DE DISEÑO DE SOFTWARE\primer parcial\Examen-hotel-pequeno\Backend\Roslyn\Roslyn\obj\Debug\netstandard2.0\Roslyn.pdb
