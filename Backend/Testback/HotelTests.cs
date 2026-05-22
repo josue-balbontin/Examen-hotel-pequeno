@@ -80,7 +80,7 @@ namespace Testback
         [Test]
         public void Dado_ExistenDatosRequeridos_Cuando_CompleteReserva_Entonces_RegistraCorrectamente()
         {
-            var dto = new CrearReservaDTO {
+            var dto = new CrearReservaDto {
                 IdsUsuarios = new List<int> { 1, 2 },
                 IdHabitacion = 10,
                 FechaIngreso = new DateOnly(2023, 10, 1),
@@ -98,14 +98,19 @@ namespace Testback
         [Test]
         public void Dado_FechaSalidaNoPosterior_Cuando_IntenteGuardar_Entonces_ImpideRegistroYLanzaValidacion()
         {
-            var dto = new CrearReservaDTO { FechaIngreso = new DateOnly(2023, 10, 5), FechaSalida = new DateOnly(2023, 10, 1) };
+            var dto = new CrearReservaDto { 
+                IdsUsuarios = new List<int> { 1 },
+                IdHabitacion = 10,
+                FechaIngreso = new DateOnly(2023, 10, 5), 
+                FechaSalida = new DateOnly(2023, 10, 1) 
+            };
             Assert.Throws<ArgumentException>(() => _reservaServicio.CrearReserva(dto));
         }
 
         [Test]
         public void Dado_HabitacionReservadaMismoRango_Cuando_IntenteRegistrar_Entonces_ImpideSolapamiento()
         {
-            var dto = new CrearReservaDTO {
+            var dto = new CrearReservaDto {
                 IdsUsuarios = new List<int> { 1 },
                 IdHabitacion = 10,
                 FechaIngreso = new DateOnly(2023, 10, 1),
@@ -120,7 +125,7 @@ namespace Testback
         [Test]
         public void Dado_CantidadPersonasSuperaCapacidad_Cuando_IntenteGuardar_Entonces_RechazaOperacion()
         {
-            var dto = new CrearReservaDTO {
+            var dto = new CrearReservaDto {
                 IdsUsuarios = new List<int> { 1, 2, 3 },
                 IdHabitacion = 10,
                 FechaIngreso = new DateOnly(2023, 10, 1),

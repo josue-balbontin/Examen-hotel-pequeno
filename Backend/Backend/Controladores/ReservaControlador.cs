@@ -16,7 +16,8 @@ public class ReservaControlador : ControllerBase
     }
 
     [HttpPost("CrearReserva")]
-    public IActionResult CrearReserva([FromBody] CrearReservaDTO dto)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public IActionResult CrearReserva([FromBody] CrearReservaDto dto)
     {
         try
         {
@@ -34,6 +35,7 @@ public class ReservaControlador : ControllerBase
     }
 
     [HttpGet("ObtenerReservas")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult ObtenerReservas()
     {
         try
@@ -51,6 +53,7 @@ public class ReservaControlador : ControllerBase
     }
     
     [HttpPut("/checkin/{idReserva}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult HacerCheckIn(int idReserva)
     {
         try
@@ -73,6 +76,7 @@ public class ReservaControlador : ControllerBase
     }
 
     [HttpPut("/checkout/{idReserva}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult HacerCheckOut(int idReserva)
     {
         try
@@ -95,6 +99,7 @@ public class ReservaControlador : ControllerBase
     }
     
     [HttpGet("Disponibilidad")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult ObtenerDisponibilidad([FromQuery] DateOnly ingreso, [FromQuery] DateOnly salida)
     {
         try
@@ -111,6 +116,7 @@ public class ReservaControlador : ControllerBase
     
     
     [HttpPut("/cancelar/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult CancelarReserva(int id)
     {
         try

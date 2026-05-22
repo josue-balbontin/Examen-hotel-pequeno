@@ -560,6 +560,9 @@
           }
         }
       },
+      "SonarAnalyzer.CSharp/10.26.0.140279": {
+        "type": "package"
+      },
       "Swashbuckle.AspNetCore/10.1.7": {
         "type": "package",
         "dependencies": {
@@ -2379,6 +2382,26 @@
         "postgresql.png"
       ]
     },
+    "SonarAnalyzer.CSharp/10.26.0.140279": {
+      "sha512": "n6+KDAbvKCJs0oYIQlxFdsmvcj1YSJ7TiqEd5jYq58T1s1Q4bwymFMeVFGDUyDKqSH9YO/7Fobvm0u9WJ7MaRQ==",
+      "type": "package",
+      "path": "sonaranalyzer.csharp/10.26.0.140279",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/SonarAnalyzer.CSharp.dll",
+        "images/sonarsource_64.png",
+        "licenses/LICENSE.txt",
+        "licenses/THIRD_PARTY_LICENSES/Google.Protobuf-LICENSE.txt",
+        "licenses/THIRD_PARTY_LICENSES/Roslyn-LICENSE.txt",
+        "licenses/THIRD_PARTY_LICENSES/StyleCop.Analyzers-LICENSE.txt",
+        "sonaranalyzer.csharp.10.26.0.140279.nupkg.sha512",
+        "sonaranalyzer.csharp.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "Swashbuckle.AspNetCore/10.1.7": {
       "sha512": "vgef8DPT411JU5JjHiDbr0WOxsIVuAvegPGtqmm4Na4JRl/264dfBJcGkiPHsAr5P+Vda+qN1rZKRtBl1rF9aA==",
       "type": "package",
@@ -2649,6 +2672,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 10.0.5",
       "Microsoft.EntityFrameworkCore.Tools >= 10.0.5",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 10.0.1",
+      "SonarAnalyzer.CSharp >= 10.26.0.140279",
       "Swashbuckle.AspNetCore >= 10.1.7"
     ]
   },
@@ -2659,11 +2683,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\primer parcial\\Examen-hotel-pequeno\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN BLOQUE 2\\Examen-hotel-pequeno\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\primer parcial\\Examen-hotel-pequeno\\Backend\\Backend\\Backend.csproj",
+      "projectPath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN BLOQUE 2\\Examen-hotel-pequeno\\Backend\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\Jogab\\.nuget\\packages\\",
-      "outputPath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\primer parcial\\Examen-hotel-pequeno\\Backend\\Backend\\obj\\",
+      "outputPath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN BLOQUE 2\\Examen-hotel-pequeno\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2721,6 +2745,12 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[10.0.1, )"
+          },
+          "SonarAnalyzer.CSharp": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[10.26.0.140279, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

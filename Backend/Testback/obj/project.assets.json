@@ -2840,11 +2840,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\primer parcial\\Examen-hotel-pequeno\\Backend\\Testback\\Testback.csproj",
+      "projectUniqueName": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN BLOQUE 2\\Examen-hotel-pequeno\\Backend\\Testback\\Testback.csproj",
       "projectName": "Testback",
-      "projectPath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\primer parcial\\Examen-hotel-pequeno\\Backend\\Testback\\Testback.csproj",
+      "projectPath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN BLOQUE 2\\Examen-hotel-pequeno\\Backend\\Testback\\Testback.csproj",
       "packagesPath": "C:\\Users\\Jogab\\.nuget\\packages\\",
-      "outputPath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\primer parcial\\Examen-hotel-pequeno\\Backend\\Testback\\obj\\",
+      "outputPath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN BLOQUE 2\\Examen-hotel-pequeno\\Backend\\Testback\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2865,8 +2865,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\primer parcial\\Examen-hotel-pequeno\\Backend\\Backend\\Backend.csproj": {
-              "projectPath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\primer parcial\\Examen-hotel-pequeno\\Backend\\Backend\\Backend.csproj"
+            "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN BLOQUE 2\\Examen-hotel-pequeno\\Backend\\Backend\\Backend.csproj": {
+              "projectPath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN BLOQUE 2\\Examen-hotel-pequeno\\Backend\\Backend\\Backend.csproj"
             }
           }
         }

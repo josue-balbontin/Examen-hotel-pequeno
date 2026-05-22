@@ -5,7 +5,7 @@ namespace Backend.Servicios;
 
 public interface IReservaServicio
 {
-    void CrearReserva(CrearReservaDTO dto);
+    public void CrearReserva(CrearReservaDto dto);
 
     IEnumerable<Reserva> ObtenerReservas();
     

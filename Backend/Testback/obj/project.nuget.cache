@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mB3mHALG29k=",
+  "dgSpecHash": "mIKUdmUcI34=",
   "success": true,
-  "projectFilePath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\primer parcial\\Examen-hotel-pequeno\\Backend\\Testback\\Testback.csproj",
+  "projectFilePath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN BLOQUE 2\\Examen-hotel-pequeno\\Backend\\Testback\\Testback.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jogab\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Jogab\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",

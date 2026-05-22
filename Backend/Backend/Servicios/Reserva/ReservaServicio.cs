@@ -21,7 +21,7 @@ public class ReservaServicio : IReservaServicio
         _configuracionRepositorio = configuracionRepositorio;
     }
 
-    public void CrearReserva(CrearReservaDTO dto)
+    public void CrearReserva(CrearReservaDto dto)
     {
         if (dto.FechaSalida <= dto.FechaIngreso)
         {

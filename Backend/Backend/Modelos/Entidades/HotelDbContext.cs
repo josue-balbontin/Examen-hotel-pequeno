@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,7 +35,7 @@ public partial class HotelDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=hotel_pequeno;Username=postgres;Password=273153");
+            // optionsBuilder.UseNpgsql("Host=localhost;Database=hotel_pequeno;Username=postgres;Password=273153");
         }
     }
 
@@ -179,8 +179,5 @@ public partial class HotelDbContext : DbContext
                 .HasConstraintName("id_usuarios");
         });
 
-        OnModelCreatingPartial(modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

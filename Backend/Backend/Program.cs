@@ -31,7 +31,7 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddDbContext<HotelDbContext>(options =>
-    options.UseNpgsql("Host=localhost;Database=hotel_pequeno;Username=postgres;Password=273153"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Host=localhost;Database=hotel_pequeno;Username=postgres;Password=273153"));
 
 
 builder.Services.AddScoped<IUsuarioRepositorio , UsuarioRepositorio>();
@@ -68,4 +68,4 @@ app.MapControllers();
 Console.WriteLine("Swagger URL: http://localhost:5052/swagger/index.html");
 
 
-app.Run();
+await app.RunAsync();
