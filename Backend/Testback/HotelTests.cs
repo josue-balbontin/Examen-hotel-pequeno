@@ -31,6 +31,8 @@ namespace Testback
             _usuarioRepoMock = new Mock<IUsuarioRepositorio>();
             _usuarioServicio = new UsuarioServicio(_usuarioRepoMock.Object);
         }
+        
+        
 
         [Test]
         public void Dado_RecepcionistaCompletaCamposObligatorios_Cuando_Guarde_Entonces_RegistraHuespedCorrectamente()
@@ -377,5 +379,34 @@ namespace Testback
             Assert.That(reserva.IdEstados, Is.EqualTo((int)EstadosReservaEnum.EstadoFinalizado));
             _reservaRepoMock.Verify(r => r.ActualizarReserva(reserva), Times.Once);
         }
+        
+        [Test]
+        public void ObtenerCargo_Dado_ExcedeFechaSalida_Entonces_AplicaCargoCompleto()
+        {
+
+            var tipoHabitacion = new TipoHabitacione { IdTipoHabitaciones = 1, PrecioReferencia = 100 };
+            var habitacion = new Habitacione { IdHabitaciones = 10, IdTipoHabitacion = 1, IdTipoHabitacionNavigation = tipoHabitacion };
+            var reserva = new Reserva 
+            { 
+                IdReservas = 1, 
+                IdEstados = (int)EstadosReservaEnum.EstadoOcupado, 
+                FechaCheckin = DateTime.UtcNow.AddDays(-2),
+                FechaSalida = DateOnly.FromDateTime(DateTime.Now).AddDays(-1), 
+                IdHabitacionesNavigation = habitacion
+            };
+                
+            
+           var respuesta = _reservaServicio.ObtenerCargo(true, false,reserva , decimal.Parse("0.50", System.Globalization.CultureInfo.InvariantCulture));
+            
+           
+            Assert.That(respuesta, Is.EqualTo(50m));
+            
+        }
+        
     }
+    
+    
+ 
+    
+    
 }

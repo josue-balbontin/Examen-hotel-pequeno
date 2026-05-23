@@ -52,14 +52,7 @@ public class ReservaServicio : IReservaServicio
 
     public void RegistrarCheckIn(int idReserva)
     {
-        var reserva = _repositorio.ObtenerPorId(idReserva);
-        
-        if (reserva == null)
-        {
-            throw new ArgumentException("Reserva no encontrada.");
-        }
-        
-
+        var reserva = _repositorio.ObtenerPorId(idReserva) ?? throw new ArgumentException("Reserva no encontrada.");
         if (reserva.FechaCheckin != null)
         {
             throw new InvalidOperationException("El check-in ya fue realizado previamente.");
@@ -80,13 +73,40 @@ public class ReservaServicio : IReservaServicio
 
     public void RegistrarCheckOut(int idReserva)
     {
-        var reserva = _repositorio.ObtenerPorId(idReserva);
+        var reserva = _repositorio.ObtenerPorId(idReserva) ?? throw new ArgumentException("Reserva no encontrada.");
+        
+        ValidarCheckout(reserva);
 
-        if (reserva == null)
-        {
-            throw new ArgumentException("Reserva no encontrada.");
-        }
+        var ahora = DateTime.UtcNow;
+        reserva.FechaCheckout = ahora;
 
+        var horaLimiteStr = _configuracionRepositorio.ObtenerValor("hora_limite_checkout", "12:00");
+        var porcentajeStr = _configuracionRepositorio.ObtenerValor("porcentaje_late_checkout", "0.50");
+
+        var horaLimite = TimeSpan.Parse(horaLimiteStr, CultureInfo.InvariantCulture);
+        
+        
+        
+        var hoy = DateOnly.FromDateTime(DateTime.Now);
+        var salida = reserva.FechaSalida.Value;
+        var horaActual = DateTime.Now.TimeOfDay;
+
+        var excedeFechaSalida = hoy > salida;
+        var excedeHoraEnMismaFecha = hoy == salida && horaActual > horaLimite;
+        var porcentajeRecargo = decimal.Parse(porcentajeStr, CultureInfo.InvariantCulture);
+
+        var cargo = ObtenerCargo(excedeFechaSalida ,excedeHoraEnMismaFecha , reserva , porcentajeRecargo);
+
+        
+
+        reserva.CargoCheckout = cargo;
+        reserva.IdEstados = (int)EstadoFinalizado;
+
+        _repositorio.ActualizarReserva(reserva);
+    }
+
+    public void ValidarCheckout(Reserva reserva)
+    {
         if (reserva.FechaCheckin == null)
         {
             throw new InvalidOperationException("No se puede registrar check-out sin check-in previo.");
@@ -101,26 +121,11 @@ public class ReservaServicio : IReservaServicio
         {
             throw new InvalidOperationException("La reserva no tiene fecha de salida definida.");
         }
-
-        var ahora = DateTime.UtcNow;
-        reserva.FechaCheckout = ahora;
-
-        var horaLimiteStr = _configuracionRepositorio.ObtenerValor("hora_limite_checkout", "12:00");
-        var porcentajeStr = _configuracionRepositorio.ObtenerValor("porcentaje_late_checkout", "0.50");
-
-        var horaLimite = TimeSpan.Parse(horaLimiteStr, CultureInfo.InvariantCulture);
-        var porcentajeRecargo = decimal.Parse(porcentajeStr, CultureInfo.InvariantCulture);
         
-        
-        var hoy = DateOnly.FromDateTime(DateTime.Now);
-        var salida = reserva.FechaSalida.Value;
-        var horaActual = DateTime.Now.TimeOfDay;
+    }
 
-        var excedeFechaSalida = hoy > salida;
-        var excedeHoraEnMismaFecha = hoy == salida && horaActual > horaLimite;
-
-        var cargo = 0m;
-
+    public decimal ObtenerCargo(bool excedeFechaSalida,bool excedeHoraEnMismaFecha , Reserva reserva , decimal porcentajeRecargo)
+    {
         if (excedeFechaSalida || excedeHoraEnMismaFecha)
         {
             if (reserva.IdHabitacionesNavigation?.IdTipoHabitacion == null)
@@ -136,8 +141,8 @@ public class ReservaServicio : IReservaServicio
             var detalleReserva = reserva.IdHabitacionesNavigation.IdTipoHabitacionNavigation;
             if (detalleReserva != null)
             {
-                    cache.Datos[idTipoHabitacion] = detalleReserva;
-                    precio = detalleReserva.PrecioReferencia;
+                cache.Datos[idTipoHabitacion] = detalleReserva;
+                precio = detalleReserva.PrecioReferencia;
             }
             
 
@@ -146,13 +151,10 @@ public class ReservaServicio : IReservaServicio
                 throw new InvalidOperationException("No se encontró un precio de referencia para el tipo de habitación.");
             }
 
-            cargo = precio.Value * porcentajeRecargo;
+            return precio.Value * porcentajeRecargo;
         }
 
-        reserva.CargoCheckout = cargo;
-        reserva.IdEstados = (int)EstadoFinalizado;
-
-        _repositorio.ActualizarReserva(reserva);
+        return 0; 
     }
     
     public IEnumerable<Habitacione> BuscarDisponibilidad(DateOnly ingreso, DateOnly salida)
