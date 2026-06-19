@@ -78,11 +78,22 @@ public class ReservaServicio : IReservaServicio
     {
         var reserva = _repositorio.ObtenerPorId(idReserva);
         
+        if (reserva == null)
+        {
+            throw new ArgumentException("Reserva no encontrada.");
+        }
+        
+        if (reserva.IdEstados != (int)EstadoReservado)
+        {
+            throw new InvalidOperationException("Solo se pueden cancelar reservas que estén en estado 'Reservado'.");
+        }
+        
 
         reserva.IdEstados = (int)EstadoCancelado; 
         
         _repositorio.ActualizarReserva(reserva);
     }
+    
     public void RegistrarCheckOut(int idReserva)
     {
         var reserva = _repositorio.ObtenerPorId(idReserva) ?? throw new ArgumentException("Reserva no encontrada.");
