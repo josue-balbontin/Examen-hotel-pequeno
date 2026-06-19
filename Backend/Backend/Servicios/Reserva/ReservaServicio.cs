@@ -38,7 +38,21 @@ public class ReservaServicio : IReservaServicio
     }
 
 
-    public void RegistrarCheckIn(int idReserva) => throw new NotImplementedException();
+    public void RegistrarCheckIn(int idReserva)
+    {
+        var reserva = _repositorio.ObtenerPorId(idReserva) ?? throw new ArgumentException("Reserva no encontrada.");
+        
+        if (reserva.FechaCheckin != null)
+        {
+            throw new InvalidOperationException("El check-in ya fue realizado previamente.");
+        }
+        
+        
+        reserva.FechaCheckin = DateTime.UtcNow;
+        reserva.IdEstados = (int)EstadoOcupado; 
+        
+        _repositorio.ActualizarReserva(reserva); 
+    }
     
     public void CancelarReserva(int idReserva) => throw new NotImplementedException();
     public void RegistrarCheckOut(int idReserva)
