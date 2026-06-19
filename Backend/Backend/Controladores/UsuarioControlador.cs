@@ -48,6 +48,10 @@ public class UsuarioControlador : ControllerBase
         {
             return Conflict(new { error = ex.Message });
         }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
     }
     
     

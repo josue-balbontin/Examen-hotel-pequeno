@@ -2,19 +2,15 @@ namespace Backend.Patrones;
 
 public class TipoHabitacionCache
 {
-    private static TipoHabitacionCache? _instancia;
+    private static readonly Lazy<TipoHabitacionCache> _instancia = new(() => new TipoHabitacionCache());
     
-    public Dictionary<int, Modelos.Entidades.TipoHabitacione> Datos { get; set; } = new();
+    public System.Collections.Concurrent.ConcurrentDictionary<int, Modelos.Entidades.TipoHabitacione> Datos { get; } = new();
 
     private TipoHabitacionCache() { }
 
     public static TipoHabitacionCache ObtenerInstancia()
     {
-        if (_instancia == null)
-        {
-            _instancia = new TipoHabitacionCache();
-        }
-        return _instancia;
+        return _instancia.Value;
     }
     
     public Modelos.Entidades.TipoHabitacione ObtenerDetalle(int idTipoHabitacion)

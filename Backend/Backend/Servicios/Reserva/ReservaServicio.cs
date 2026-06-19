@@ -14,6 +14,8 @@ public class ReservaServicio : IReservaServicio
     private readonly IReservaRepositorio _repositorio;
     private readonly IConfiguracionRepositorio _configuracionRepositorio;
 
+    private const string HoraLimiteCheckoutKey = "hora_limite_checkout";
+    private const string PorcentajeLateCheckoutKey = "porcentaje_late_checkout";
 
     public ReservaServicio(IReservaRepositorio repositorio, IConfiguracionRepositorio configuracionRepositorio)
     {
@@ -103,8 +105,8 @@ public class ReservaServicio : IReservaServicio
         var ahora = DateTime.UtcNow;
         reserva.FechaCheckout = ahora;
 
-        var horaLimiteStr = _configuracionRepositorio.ObtenerValor("hora_limite_checkout", "12:00");
-        var porcentajeStr = _configuracionRepositorio.ObtenerValor("porcentaje_late_checkout", "0.50");
+        var horaLimiteStr = _configuracionRepositorio.ObtenerValor(HoraLimiteCheckoutKey, "12:00");
+        var porcentajeStr = _configuracionRepositorio.ObtenerValor(PorcentajeLateCheckoutKey, "0.50");
 
         var horaLimite = TimeSpan.Parse(horaLimiteStr, CultureInfo.InvariantCulture);
         
