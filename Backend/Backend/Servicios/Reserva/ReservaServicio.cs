@@ -56,12 +56,17 @@ public class ReservaServicio : IReservaServicio
     public void RegistrarCheckIn(int idReserva)
     {
         var reserva = _repositorio.ObtenerPorId(idReserva) ?? throw new ArgumentException("Reserva no encontrada.");
-        
         if (reserva.FechaCheckin != null)
         {
             throw new InvalidOperationException("El check-in ya fue realizado previamente.");
         }
         
+        if (reserva.IdEstados != (int)EstadoReservado)
+        {
+            throw new InvalidOperationException("Solo se puede hacer Check-in a una reserva en estado 'Reservado'.");
+        }
+
+
         
         reserva.FechaCheckin = DateTime.UtcNow;
         reserva.IdEstados = (int)EstadoOcupado; 
