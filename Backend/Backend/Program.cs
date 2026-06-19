@@ -32,7 +32,7 @@ builder.Services.AddControllers()
 
 var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION") 
     ?? builder.Configuration.GetConnectionString("DefaultConnection") 
-    ?? "Host=dpg-d8qdv1gjs32c7390hf0g-a;Database=hotel_pequeno;Username=hotel_pequeno_user;Password=YJ7NkBmJLdM5FzdTW6mtgmoX6mAwHkKA";
+    ?? "Host=dpg-d8qdv1gjs32c7390hf0g-a.oregon-postgres.render.com;Database=hotel_pequeno;Username=hotel_pequeno_user;Password=YJ7NkBmJLdM5FzdTW6mtgmoX6mAwHkKA";
 
 builder.Services.AddDbContext<HotelDbContext>(options =>
     options.UseNpgsql(connectionString));
