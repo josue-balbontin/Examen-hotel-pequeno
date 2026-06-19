@@ -28,7 +28,15 @@ public class ReservaServicio : IReservaServicio
         return _repositorio.ObtenerTodas();
     }
 
-    public void CrearReserva(CrearReservaDto dto) => throw new NotImplementedException();
+    public void CrearReserva(CrearReservaDto dto)
+    {
+ 
+
+        var reserva = dto.MapearAReserva((int)EstadoReservado);
+
+        _repositorio.Crear(reserva, dto.IdsUsuarios);
+    }
+
 
     public void RegistrarCheckIn(int idReserva) => throw new NotImplementedException();
     
