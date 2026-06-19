@@ -54,7 +54,15 @@ public class ReservaServicio : IReservaServicio
         _repositorio.ActualizarReserva(reserva); 
     }
     
-    public void CancelarReserva(int idReserva) => throw new NotImplementedException();
+    public void CancelarReserva(int idReserva)
+    {
+        var reserva = _repositorio.ObtenerPorId(idReserva);
+        
+
+        reserva.IdEstados = (int)EstadoCancelado; 
+        
+        _repositorio.ActualizarReserva(reserva);
+    }
     public void RegistrarCheckOut(int idReserva)
     {
         var reserva = _repositorio.ObtenerPorId(idReserva) ?? throw new ArgumentException("Reserva no encontrada.");
