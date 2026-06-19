@@ -30,7 +30,22 @@ public class ReservaServicio : IReservaServicio
 
     public void CrearReserva(CrearReservaDto dto)
     {
- 
+        if (dto.FechaSalida <= dto.FechaIngreso)
+        {
+            throw new ArgumentException("La fecha de salida debe ser posterior a la fecha de ingreso.");
+        }
+
+        var capacidad = _repositorio.ObtenerCapacidadHabitacion(dto.IdHabitacion);
+
+        if (dto.IdsUsuarios.Count > capacidad)
+        {
+            throw new ArgumentException("La cantidad de huéspedes supera la capacidad de la habitación seleccionada.");
+        }
+
+        if (_repositorio.ExisteSolapamiento(dto.IdHabitacion, dto.FechaIngreso, dto.FechaSalida))
+        {
+            throw new InvalidOperationException("La habitación ya tiene una reserva en el rango de fechas seleccionado.");
+        }
 
         var reserva = dto.MapearAReserva((int)EstadoReservado);
 
