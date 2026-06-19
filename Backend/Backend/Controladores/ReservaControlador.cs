@@ -52,7 +52,7 @@ public class ReservaControlador : ControllerBase
 
     }
     
-    [HttpPut("/checkin/{idReserva}")]
+    [HttpPut("{idReserva}/checkin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult HacerCheckIn(int idReserva)
     {
@@ -75,7 +75,7 @@ public class ReservaControlador : ControllerBase
         }
     }
 
-    [HttpPut("/checkout/{idReserva}")]
+    [HttpPut("{idReserva}/checkout")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult HacerCheckOut(int idReserva)
     {
@@ -115,7 +115,7 @@ public class ReservaControlador : ControllerBase
     }
     
     
-    [HttpPut("/cancelar/{id}")]
+    [HttpPut("{id}/cancelar")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult CancelarReserva(int id)
     {
