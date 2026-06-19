@@ -21,56 +21,18 @@ public class ReservaServicio : IReservaServicio
         _configuracionRepositorio = configuracionRepositorio;
     }
 
-    public void CrearReserva(CrearReservaDto dto)
-    {
-        if (dto.FechaSalida <= dto.FechaIngreso)
-        {
-            throw new ArgumentException("La fecha de salida debe ser posterior a la fecha de ingreso.");
-        }
 
-        var capacidad = _repositorio.ObtenerCapacidadHabitacion(dto.IdHabitacion);
-
-        if (dto.IdsUsuarios.Count > capacidad)
-        {
-            throw new ArgumentException("La cantidad de huéspedes supera la capacidad de la habitación seleccionada.");
-        }
-
-        if (_repositorio.ExisteSolapamiento(dto.IdHabitacion, dto.FechaIngreso, dto.FechaSalida))
-        {
-            throw new InvalidOperationException("La habitación ya tiene una reserva en el rango de fechas seleccionado.");
-        }
-
-        var reserva = dto.MapearAReserva((int)EstadoReservado);
-
-        _repositorio.Crear(reserva, dto.IdsUsuarios);
-    }
 
     public IEnumerable<Reserva> ObtenerReservas()
     {
         return _repositorio.ObtenerTodas();
     }
 
-    public void RegistrarCheckIn(int idReserva)
-    {
-        var reserva = _repositorio.ObtenerPorId(idReserva) ?? throw new ArgumentException("Reserva no encontrada.");
-        if (reserva.FechaCheckin != null)
-        {
-            throw new InvalidOperationException("El check-in ya fue realizado previamente.");
-        }
-        
-        if (reserva.IdEstados != (int)EstadoReservado)
-        {
-            throw new InvalidOperationException("Solo se puede hacer Check-in a una reserva en estado 'Reservado'.");
-        }
+    public void CrearReserva(CrearReservaDto dto) => throw new NotImplementedException();
 
-
-        
-        reserva.FechaCheckin = DateTime.UtcNow;
-        reserva.IdEstados = (int)EstadoOcupado; 
-        
-        _repositorio.ActualizarReserva(reserva); 
-    }
-
+    public void RegistrarCheckIn(int idReserva) => throw new NotImplementedException();
+    
+    public void CancelarReserva(int idReserva) => throw new NotImplementedException();
     public void RegistrarCheckOut(int idReserva)
     {
         var reserva = _repositorio.ObtenerPorId(idReserva) ?? throw new ArgumentException("Reserva no encontrada.");
@@ -167,24 +129,5 @@ public class ReservaServicio : IReservaServicio
         return _repositorio.ObtenerHabitacionesDisponibles(ingreso, salida);
     }
 
-    public void CancelarReserva(int idReserva)
-    {
-        var reserva = _repositorio.ObtenerPorId(idReserva);
-        
-        if (reserva == null)
-        {
-            throw new ArgumentException("Reserva no encontrada.");
-        }
-        
-        if (reserva.IdEstados != (int)EstadoReservado)
-        {
-            throw new InvalidOperationException("Solo se pueden cancelar reservas que estén en estado 'Reservado'.");
-        }
-        
 
-        reserva.IdEstados = (int)EstadoCancelado; 
-        
-        _repositorio.ActualizarReserva(reserva);
-    }
-    
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YSMqD6D/OJM=",
+  "dgSpecHash": "9swa0GPKlLg=",
   "success": true,
-  "projectFilePath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN BLOQUE 2\\Examen-hotel-pequeno\\Backend\\Backend\\Backend.csproj",
+  "projectFilePath": "D:\\josue\\AAuniversidad\\TALLER DE DISEÑO DE SOFTWARE\\EXAMEN FINAL\\originales\\Examen-hotel-pequeno\\Backend\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jogab\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Jogab\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.5\\microsoft.aspnetcore.openapi.10.0.5.nupkg.sha512",
