@@ -290,10 +290,10 @@ var assemblies = [
   {
     "name": "Backend",
     "classes": [
-      { "name": "Backend.Servicios.ReservaServicio", "rp": "Backend_ReservaServicio.html", "cl": 0, "ucl": 68, "cal": 68, "tl": 133, "cb": 0, "tb": 22, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Backend.Servicios.ServicioServicio", "rp": "Backend_ServicioServicio.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Backend.Servicios.TipoHabitacion.TipoHabitacionServicio", "rp": "Backend_TipoHabitacionServicio.html", "cl": 0, "ucl": 16, "cal": 16, "tl": 31, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Backend.Servicios.UsuarioServicio", "rp": "Backend_UsuarioServicio.html", "cl": 0, "ucl": 16, "cal": 16, "tl": 35, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Backend.Servicios.ReservaServicio", "rp": "Backend_ReservaServicio.html", "cl": 81, "ucl": 21, "cal": 102, "tl": 194, "cb": 26, "tb": 38, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Backend.Servicios.ServicioServicio", "rp": "Backend_ServicioServicio.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Backend.Servicios.TipoHabitacion.TipoHabitacionServicio", "rp": "Backend_TipoHabitacionServicio.html", "cl": 16, "ucl": 0, "cal": 16, "tl": 31, "cb": 4, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Backend.Servicios.UsuarioServicio", "rp": "Backend_UsuarioServicio.html", "cl": 13, "ucl": 3, "cal": 16, "tl": 35, "cb": 8, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -302,29 +302,9 @@ var metrics = [{ "name": "Crap Score", "abbreviation": "crp", "explanationUrl": 
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
-      { "name": "Crap Score", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" },
-      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
 ];
 
 var riskHotspots = [
-  {
-    "assembly": "Backend", "class": "Backend.Servicios.ReservaServicio", "reportPath": "Backend_ReservaServicio.html", "methodName": "ObtenerCargo(System.Boolean,System.Boolean,Backend.Modelos.Entidades.Reserva,System.Decimal)", "methodShortName": "ObtenerCargo(...)", "fileIndex": 0, "line": 90,
-    "metrics": [
-      { "value": 110, "exceeded": true },
-      { "value": 10, "exceeded": false },
-    ]},
-  {
-    "assembly": "Backend", "class": "Backend.Servicios.UsuarioServicio", "reportPath": "Backend_UsuarioServicio.html", "methodName": "RegistrarUsuario(Backend.Modelos.Entidades.Usuario)", "methodShortName": "RegistrarUsuario(...)", "fileIndex": 0, "line": 16,
-    "metrics": [
-      { "value": 72, "exceeded": true },
-      { "value": 8, "exceeded": false },
-    ]},
-  {
-    "assembly": "Backend", "class": "Backend.Servicios.ReservaServicio", "reportPath": "Backend_ReservaServicio.html", "methodName": "ValidarCheckout(Backend.Modelos.Entidades.Reserva)", "methodShortName": "ValidarCheckout(...)", "fileIndex": 0, "line": 71,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
 ];
 
 var branchCoverageAvailable = true;
