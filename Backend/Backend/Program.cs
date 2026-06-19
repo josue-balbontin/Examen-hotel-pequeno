@@ -30,8 +30,12 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
     });
 
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION") 
+    ?? builder.Configuration.GetConnectionString("DefaultConnection") 
+    ?? "Host=dpg-d8qdv1gjs32c7390hf0g-a;Database=hotel_pequeno;Username=hotel_pequeno_user;Password=YJ7NkBmJLdM5FzdTW6mtgmoX6mAwHkKA";
+
 builder.Services.AddDbContext<HotelDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Host=localhost;Database=hotel_pequeno;Username=postgres;Password=273153"));
+    options.UseNpgsql(connectionString));
 
 
 builder.Services.AddScoped<IUsuarioRepositorio , UsuarioRepositorio>();
@@ -60,10 +64,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseCors("PoliticaCors");
 
 
 app.MapControllers();
+
+app.MapFallbackToFile("index.html");
 
 Console.WriteLine("Swagger URL: http://localhost:5052/swagger/index.html");
 
